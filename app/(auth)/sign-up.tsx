@@ -100,7 +100,7 @@ export default function SignUp() {
           />
 
           <Button
-            containerStyles={"mt-7 px-4 h-16 w-[90%]"}
+            containerStyles={"mt-7 px-4 h-12 w-[90%]"}
             textStyles={"text-xl"}
             title="Sign Up"
             handlePress={handleSubmit(onSubmit)}

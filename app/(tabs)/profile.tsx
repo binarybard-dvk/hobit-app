@@ -14,7 +14,7 @@ import { router } from "expo-router";
 import { ThemedView } from "@/components/ui/ThemedView";
 import { colors } from "@/constants/Colors";
 
-export default function Profile() {
+export default function ProfileScreen() {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState("");
