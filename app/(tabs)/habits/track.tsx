@@ -11,7 +11,7 @@ import { View, Text, useColorScheme, Alert } from 'react-native'
 
 export default function TrackScreen() {
 	const colorScheme = useColorScheme()
-	const { id, name, planned_time, frequency } = useLocalSearchParams()
+	const { id, name, planned_time, frequency, to } = useLocalSearchParams()
 	const isPresented = router.canGoBack()
 	const {
 		control,
@@ -20,7 +20,7 @@ export default function TrackScreen() {
 		formState: { errors, isSubmitting },
 	} = useForm({
 		defaultValues: {
-			status: '',
+			status: 'Completed',
 			actual_time_minutes: planned_time?.toString() || '',
 		},
 	})
@@ -36,9 +36,11 @@ export default function TrackScreen() {
 			])
 
 			if (error) {
+				console.error('Error adding habit entry:', error)
 				throw error
 			} else {
-				router.push('/habits')
+				reset()
+				router.push(`../`)
 			}
 		} catch (error) {
 			if (error instanceof Error) {
@@ -52,7 +54,6 @@ export default function TrackScreen() {
 			<Text className='h-16 bg-lime-500 text-white font-psemibold text-xl py-4 text-center'>
 				Track: {name}
 			</Text>
-			{!isPresented && <Link href='../'>Dismiss</Link>}
 			<ThemedView className='flex flex-col space-y-2 gap-2 p-3 mt-5'>
 				<Text
 					className='text-base font-pitalic mb-4'
@@ -74,12 +75,15 @@ export default function TrackScreen() {
 						<Picker
 							selectedValue={value}
 							onValueChange={(itemValue) => onChange(itemValue)}>
-							<Picker.Item label='Completed' value='completed' />
-							<Picker.Item label='Missed' value='missed' />
-							<Picker.Item label='Skipped' value='skipped' />
+							<Picker.Item label='Completed' value='Completed' />
+							<Picker.Item label='Missed' value='Missed' />
+							<Picker.Item label='Skipped' value='Skipped' />
 						</Picker>
 					)}
 				/>
+				{errors.status && (
+					<Text className='text-red-500 px-4'>{errors.status.message}</Text>
+				)}
 				<Controller
 					control={control}
 					name='actual_time_minutes'
@@ -100,12 +104,20 @@ export default function TrackScreen() {
 					</Text>
 				)}
 
-				<Button
-					containerStyles={'mt-10 mx-4'}
-					title={isSubmitting ? 'Adding...' : 'Track Habit'}
-					handlePress={handleSubmit(trackHabit)}
-					loading={isSubmitting}
-				/>
+				<View className='flex gap-4 px-4'>
+					<Button
+						containerStyles={'mt-10'}
+						title={isSubmitting ? 'Adding...' : 'Track Habit'}
+						handlePress={handleSubmit(trackHabit)}
+						loading={isSubmitting}
+					/>
+
+					<Button
+						containerStyles={'mt-4'}
+						title={'Dismiss'}
+						handlePress={() => router.push(`../`)}
+					/>
+				</View>
 			</ThemedView>
 		</ThemedView>
 	)
