@@ -48,7 +48,9 @@ export default function HabitsScreen() {
 
 			const { data, error, status } = await supabase
 				.from('habits')
-				.select(`id, name, frequency, description, planned_time_minutes`)
+				.select(
+					`id, name, frequency, description, planned_time_minutes, notify`
+				)
 				.eq('user_id', user_id)
 
 			if (error && status !== 406) {
@@ -109,7 +111,7 @@ export default function HabitsScreen() {
 											</Link>
 											<Link
 												className='text-lime-600'
-												href={`/habits/${habit.id}?name=${habit.name}&description=${habit.description}&frequency=${habit.frequency}&planned_time=${habit.planned_time_minutes}`}>
+												href={`/habits/${habit.id}?name=${habit.name}&description=${habit.description}&frequency=${habit.frequency}&planned_time=${habit.planned_time_minutes}&notify=${habit.notify}`}>
 												View
 											</Link>
 										</View>
