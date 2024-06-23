@@ -16,6 +16,7 @@ export type FormInputProps = TextInputProps & {
   value: string;
   handleChangeText?: (text: string) => void;
   handleBlur?: () => void;
+  containerStyles?: any;
   otherStyles?: any;
   error?: any;
   disabled?: boolean;
@@ -28,6 +29,7 @@ export default function FormInput({
   handleChangeText,
   handleBlur,
   keyboardType,
+  containerStyles,
   otherStyles,
   error,
   disabled,
@@ -45,11 +47,11 @@ export default function FormInput({
         {label}
       </Text>
       <View
-        className={`w-full h-16 px-4 border focus:border-lime-500 rounded-2xl flex-row items-center ${
+        className={`w-full h-16 px-4 border focus:border-lime-500 rounded-xl flex-row items-center ${
           colorScheme === "light"
             ? "bg-neutral-100 border-neutral-200"
             : "bg-neutral-800 border-neutral-700"
-        }`}
+        } ${containerStyles}`}
       >
         <TextInput
           className={`flex-1 caret-lime-500 font-pmedium text-base ${
