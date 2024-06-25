@@ -13,15 +13,15 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-			"supportsTablet": true,
-			"config": {
-				"usesNonExemptEncryption": false
-			},
-			"bundleIdentifier": "com.hackclub.hobitapp",
-			"entitlements": {
-				"aps-environment": "development"
-			}
-		},
+      "supportsTablet": true,
+      "config": {
+        "usesNonExemptEncryption": false
+      },
+      "bundleIdentifier": "com.hackclub.hobitapp",
+      "entitlements": {
+        "aps-environment": "development"
+      }
+    },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
@@ -43,7 +43,11 @@
     "extra": {
       "router": {
         "origin": false
+      },
+      "eas": {
+        "projectId": "ccf71d3f-c140-4bcd-aa4a-d0ac97099ff3"
       }
-    }
+    },
+    "owner": "binarybard-dvk"
   }
 }
