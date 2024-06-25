@@ -13,14 +13,21 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
-    },
+			"supportsTablet": true,
+			"config": {
+				"usesNonExemptEncryption": false
+			},
+			"bundleIdentifier": "com.hackclub.hobitapp",
+			"entitlements": {
+				"aps-environment": "development"
+			}
+		},
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.giridhar7632.hobitapp"
+      "package": "com.hackclub.hobitapp"
     },
     "web": {
       "bundler": "metro",
