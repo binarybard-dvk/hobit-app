@@ -3,7 +3,7 @@ on:
     tags:
       - "v*.*.*"
     paths:
-      - "apps/mobile/**"
+      - "*"
       - ".github/workflows/expo.yaml"
 
 permissions:
