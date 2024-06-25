@@ -31,6 +31,9 @@ jobs:
         run: yarn install
 
       - name: 🚀 Build app
+        env:
+          EXPO_PUBLIC_SUPABASE_PUBLIC_URL: ${{ secrets.EXPO_PUBLIC_SUPABASE_PUBLIC_URL }}
+          EXPO_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.EXPO_PUBLIC_SUPABASE_ANON_KEY }}
         run: mkdir builds; eas build -p ios --local --non-interactive --output builds/build.ipa
 
       - name: 📦 Publish ipa to releases
