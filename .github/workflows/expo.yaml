@@ -18,10 +18,8 @@ jobs:
       - name: 🏗 Setup repo
         uses: actions/checkout@v3
 
-      - name: 🏗 Setup Yarn
-        uses: borales/actions-yarn@v2
-        with:
-          cmd: install
+      - name: 🏗 Setup bun
+        uses: oven-sh/setup-bun@v1
 
       - name: 🏗 Setup EAS
         uses: expo/expo-github-action@v8
