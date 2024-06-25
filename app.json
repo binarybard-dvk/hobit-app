@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "app.hobit",
+    "scheme": "com.hackclub.hobit",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -47,7 +47,6 @@
       "eas": {
         "projectId": "ccf71d3f-c140-4bcd-aa4a-d0ac97099ff3"
       }
-    },
-    "owner": "binarybard-dvk"
+    }
   }
 }
