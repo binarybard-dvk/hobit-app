@@ -9,31 +9,36 @@ on:
 permissions:
   contents: write
 
-name: Expo Build
+name: iOS App Release Build
+
+env:
+  EXPO_PUBLIC_SUPABASE_PUBLIC_URL: ${{ secrets.EXPO_PUBLIC_SUPABASE_PUBLIC_URL }}
+  EXPO_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.EXPO_PUBLIC_SUPABASE_ANON_KEY }}
 
 jobs:
   build:
     runs-on: macos-latest
     steps:
       - name: 🏗 Setup repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+      
+      - name: 🏗 Setup node
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version: 18.x
+          cache: 'npm'
 
-      - name: 🏗 Setup bun
-        uses: oven-sh/setup-bun@v1
-
-      - name: 🏗 Setup EAS
+      - name: 🏗 Setup Expo
         uses: expo/expo-github-action@v8
         with:
+          expo-version: latest
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: 📦 Install dependencies
-        run: yarn install
+        run: npm ci
 
-      - name: 🚀 Build app
-        env:
-          EXPO_PUBLIC_SUPABASE_PUBLIC_URL: ${{ secrets.EXPO_PUBLIC_SUPABASE_PUBLIC_URL }}
-          EXPO_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.EXPO_PUBLIC_SUPABASE_ANON_KEY }}
+      - name: 🚀 Build iOS app
         run: mkdir builds; eas build -p ios --local --non-interactive --output builds/build.ipa
 
       - name: 📦 Publish ipa to releases
