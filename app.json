@@ -17,7 +17,7 @@
       "config": {
         "usesNonExemptEncryption": false
       },
-      "bundleIdentifier": "com.hackclub.hobitapp",
+      "bundleIdentifier": "com.hackclub.hobit",
       "entitlements": {
         "aps-environment": "development"
       }
@@ -27,7 +27,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.hackclub.hobitapp"
+      "package": "com.hackclub.hobit"
     },
     "web": {
       "bundler": "metro",
