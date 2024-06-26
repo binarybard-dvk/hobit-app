@@ -8,24 +8,24 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useRef, useState } from "react";
 import "react-native-reanimated";
-import * as Notifications from "expo-notifications";
+// import * as Notifications from "expo-notifications";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { StatusBar } from "expo-status-bar";
 import { colors } from "@/constants/Colors";
 import { Platform } from "react-native";
-import { registerForPushNotificationsAsync } from "@/utils/notifications";
+// import { registerForPushNotificationsAsync } from "@/utils/notifications";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 const queryClient = new QueryClient();
 SplashScreen.preventAutoHideAsync();
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: false,
-    shouldSetBadge: false,
-  }),
-});
+// Notifications.setNotificationHandler({
+//   handleNotification: async () => ({
+//     shouldShowAlert: true,
+//     shouldPlaySound: false,
+//     shouldSetBadge: false,
+//   }),
+// });
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -46,15 +46,15 @@ export default function RootLayout() {
     }
   }, [loaded]);
 
-  const [expoPushToken, setExpoPushToken] = useState("");
-  const [channels, setChannels] = useState<Notifications.NotificationChannel[]>(
-    [],
-  );
-  const [notification, setNotification] = useState<
-    Notifications.Notification | undefined
-  >(undefined);
-  const notificationListener = useRef<Notifications.Subscription>();
-  const responseListener = useRef<Notifications.Subscription>();
+  // const [expoPushToken, setExpoPushToken] = useState("");
+  // const [channels, setChannels] = useState<Notifications.NotificationChannel[]>(
+  //   [],
+  // );
+  // const [notification, setNotification] = useState<
+  //   Notifications.Notification | undefined
+  // >(undefined);
+  // const notificationListener = useRef<Notifications.Subscription>();
+  // const responseListener = useRef<Notifications.Subscription>();
 
   // useEffect(() => {
   // 	registerForPushNotificationsAsync().then(
