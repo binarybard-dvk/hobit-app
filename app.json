@@ -21,7 +21,7 @@
 			"entitlements": {
 				"aps-environment": "development"
 			},
-			"buildNumber": "2"
+			"buildNumber": "3"
 		},
 		"android": {
 			"adaptiveIcon": {
