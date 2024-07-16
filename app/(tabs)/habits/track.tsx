@@ -60,30 +60,33 @@ export default function TrackScreen() {
           <Text className="text-lime-600">{planned_time}</Text> minutes{" "}
           {frequency}
         </Text>
-        <Text
-          style={{ color: colors[colorScheme ?? "light"].tabIconDefault }}
-          className="text-base"
-        >
-          Select status
-        </Text>
-        <Controller
-          control={control}
-          name="status"
-          rules={{ required: "Status is required" }}
-          render={({ field: { onChange, value } }) => (
-            <Picker
-              selectedValue={value}
-              onValueChange={(itemValue) => onChange(itemValue)}
-            >
-              <Picker.Item label="Completed" value="Completed" />
-              <Picker.Item label="Missed" value="Missed" />
-              <Picker.Item label="Skipped" value="Skipped" />
-            </Picker>
+
+        <View className="mx-4 px-4">
+          <Text
+            style={{ color: colors[colorScheme ?? "light"].tabIconDefault }}
+            className="text-base"
+          >
+            Select status
+          </Text>
+          <Controller
+            control={control}
+            name="status"
+            rules={{ required: "Status is required" }}
+            render={({ field: { onChange, value } }) => (
+              <Picker
+                selectedValue={value}
+                onValueChange={(itemValue) => onChange(itemValue)}
+              >
+                <Picker.Item label="Completed" value="Completed" />
+                <Picker.Item label="Missed" value="Missed" />
+                <Picker.Item label="Skipped" value="Skipped" />
+              </Picker>
+            )}
+          />
+          {errors.status && (
+            <Text className="text-red-500 px-4">{errors.status.message}</Text>
           )}
-        />
-        {errors.status && (
-          <Text className="text-red-500 px-4">{errors.status.message}</Text>
-        )}
+        </View>
         <Controller
           control={control}
           name="actual_time_minutes"
@@ -92,7 +95,7 @@ export default function TrackScreen() {
               handleBlur={onBlur}
               handleChangeText={(value) => onChange(value)}
               value={value}
-              label="Actaul time (minutes)"
+              label="Actual time (minutes)"
               placeholder="Enter actual time spent"
               keyboardType="numeric"
             />

@@ -32,6 +32,9 @@ export default function HomeScreen() {
     });
   }, [session]);
 
+  const url = Linking.useURL();
+  if (url) createSessionFromUrl(url).then(res => res && setSession(res))
+
   if (session && session.user) {
     return <Redirect href="/habits" />;
   }

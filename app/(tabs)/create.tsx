@@ -109,27 +109,29 @@ export default function CreateScreen() {
             )}
           />
 
-          <Text
-            style={{ color: colors[colorScheme ?? "light"].tabIconDefault }}
-            className="text-base"
-          >
-            Select frequency
-          </Text>
-          <Controller
-            control={control}
-            name="frequency"
-            rules={{ required: "Frequency is required" }}
-            render={({ field: { onChange, value } }) => (
-              <Picker
-                selectedValue={value}
-                onValueChange={(itemValue) => onChange(itemValue)}
-              >
-                <Picker.Item label="Daily" value="daily" />
-                <Picker.Item label="Weekly" value="weekly" />
-                <Picker.Item label="Monthly" value="monthly" />
-              </Picker>
-            )}
-          />
+          <View className="mx-4 px-4">
+            <Text
+              style={{ color: colors[colorScheme ?? "light"].tabIconDefault }}
+              className="text-base"
+            >
+              Select frequency
+            </Text>
+            <Controller
+              control={control}
+              name="frequency"
+              rules={{ required: "Frequency is required" }}
+              render={({ field: { onChange, value } }) => (
+                <Picker
+                  selectedValue={value}
+                  onValueChange={(itemValue) => onChange(itemValue)}
+                >
+                  <Picker.Item label="Daily" value="daily" />
+                  <Picker.Item label="Weekly" value="weekly" />
+                  <Picker.Item label="Monthly" value="monthly" />
+                </Picker>
+              )}
+            />
+          </View>
 
           <Controller
             control={control}
