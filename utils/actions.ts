@@ -61,6 +61,31 @@ export async function getHabitActivity(habitId: string) {
   return activityData;
 }
 
+export async function getHabitActivitySummary(habitId: string) {
+  const user_id = await getSessionId();
+  if (!user_id) throw new Error("No user on the session in habits!");
+
+  const {
+    data: activityData,
+    error: activityError,
+    status: activityStatus,
+  } = await supabase
+    .from("habit_entries_summary")
+    .select("entry_date as date, total_time_minutes as count")
+    .eq("habit_id", habitId)
+    .order("entry_date", { ascending: false })
+    .limit(105);
+
+  if (activityError && activityStatus !== 406) {
+    throw activityError;
+  }
+
+  return activityData?.map((d: any) => ({
+    date: d.entry_date,
+    count: d.total_time_minutes,
+  }));
+}
+
 export async function createHabit(formData: any) {
   const user_id = await getSessionId();
   if (!user_id) throw new Error("No user on the session in habits!");
