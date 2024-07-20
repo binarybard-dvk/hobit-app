@@ -17,6 +17,8 @@ import { formatRelative } from "date-fns";
 import icons from "@/constants/icons";
 import { useQuery } from "@tanstack/react-query";
 import { getHabitActivity } from "@/utils/actions";
+import { Heatmap } from "@/components/HeatMap";
+import { data } from "@/scripts/data";
 
 export default function HabitScreen() {
   const { id, name, description, frequency, planned_time, notify } =
@@ -66,6 +68,9 @@ export default function HabitScreen() {
                 <Text className="text-lime-500">{planned_time}</Text> minutes.
               </ThemedText>
             </View>
+            <ScrollView className="h-48 w-96">
+              <Heatmap data={data} width={420} height={200} />
+            </ScrollView>
             <View className="flex flex-col space-y-2 px-4">
               <View className="flex flex-row items-center justify-between mb-4">
                 <ThemedText className="text-xl font-pbold">

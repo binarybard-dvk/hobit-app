@@ -82,14 +82,14 @@ export default function SignInScreen() {
   };
 
   const emailLogin = async (data: User) => {
-    if (data.email === 'tester.71a220ff@hobit.app') {
-			const res = await supabase.auth.signInWithPassword({
-				email: 'tester.71a220ff@hobit.app',
-				password: 'RhwPImiOl9AKOVq@',
-			})
-			return router.push('/habits')
-		}
-    
+    if (data.email === "tester.71a220ff@hobit.app") {
+      const res = await supabase.auth.signInWithPassword({
+        email: "tester.71a220ff@hobit.app",
+        password: "RhwPImiOl9AKOVq@",
+      });
+      return router.push("/habits");
+    }
+
     const { error } = await supabase.auth.signInWithOtp({
       email: data.email,
       options: {
