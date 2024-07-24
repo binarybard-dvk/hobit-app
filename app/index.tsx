@@ -33,7 +33,10 @@ export default function HomeScreen() {
   }, [session]);
 
   const url = Linking.useURL();
-  if (url) createSessionFromUrl(url).then(res => res && setSession(res))
+  if (url) {
+    createSessionFromUrl(url).then(res => res && setSession(res))
+    router.push('/habits')
+  }
 
   if (session && session.user) {
     return <Redirect href="/habits" />;

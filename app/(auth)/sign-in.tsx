@@ -57,7 +57,10 @@ export default function SignInScreen() {
   });
 
   const url = Linking.useURL();
-  if (url) createSessionFromUrl(url);
+  if (url) {
+    createSessionFromUrl(url);
+    router.push('/habits')
+  }
 
   const githubLogin = async () => {
     const { data, error } = await supabase.auth.signInWithOAuth({

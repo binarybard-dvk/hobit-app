@@ -31,6 +31,7 @@ export default function TrackScreen() {
     onSuccess: () => {
       reset();
       queryClient.invalidateQueries({ queryKey: ["habit_entries", id] });
+      queryClient.invalidateQueries({ queryKey: ['habit_summary', id] })
       router.push(`../`);
     },
     onError: (error) => {

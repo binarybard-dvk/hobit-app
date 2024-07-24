@@ -46,9 +46,8 @@ export default function HabitScreen() {
       style={{ backgroundColor: colors[colorScheme ?? "light"].background }}
       className="h-full"
     >
-      <ScrollView contentContainerStyle={{ height: "100%" }}>
-        <ThemedView className="flex-1">
-          <View>
+      <ScrollView>
+        <ThemedView className="flex-1 pb-20">
             <View
               className={`relative flex flex-col py-10 my-10 items-center justify-center ${
                 colorScheme === "light" ? "bg-neutral-100" : "bg-neutral-800"
@@ -75,22 +74,34 @@ export default function HabitScreen() {
               </ThemedText>
             </View>
             <ScrollView className="h-48 w-96">
-            {isLoadingSummary ? (
-								<ActivityIndicator />
-							) : (
-								// <Heatmap
-								// 	data={generateChartData(activitySummary)}
-								// 	width={420}
-								// 	height={200}
-								// />
-								<ContributionGraph
-									values={activitySummary}
-									endDate={new Date('2017-04-01')}
-									numDays={105}
-									width={420}
-									height={220}
-								/>
-							)}
+            {activitySummary?.length > 0 ? (
+              <View className='h-60 max-h-96 w-96 overflow-y-hidden overflow-x-auto'>
+                {isLoadingSummary ? (
+                  <ActivityIndicator />
+                ) : (
+                  // <Heatmap data={activitySummary} width={420} height={200} />
+                  <ContributionGraph
+                    values={activitySummary}
+                    endDate={new Date(activitySummary[0]?.date)}
+                    numDays={105}
+                    width={500}
+                    height={220}
+                    gutterSize={2}
+                    tooltipDataAttrs={({ value }) => handleToolTip}
+                    chartConfig={{
+                      backgroundColor: '#fff',
+                      backgroundGradientFrom: '#fff',
+                      backgroundGradientTo: '#fff',
+                      color: (opacity = 1) => `rgba(132, 204, 22, ${opacity})`,
+                      labelColor: (opacity = 1) => `rgb(101, 163, 13)`,
+                      style: {
+                        borderRadius: 16,
+                      },
+                    }}
+                  />
+                )}
+              </View>
+            ) : null}
             </ScrollView>
             <View className="flex flex-col space-y-2 px-4">
               <View className="flex flex-row items-center justify-between mb-4">
@@ -141,7 +152,6 @@ export default function HabitScreen() {
                 ))
               )}
             </View>
-          </View>
         </ThemedView>
       </ScrollView>
     </SafeAreaView>
