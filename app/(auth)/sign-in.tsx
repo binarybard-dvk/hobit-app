@@ -23,6 +23,7 @@ import * as QueryParams from "expo-auth-session/build/QueryParams";
 import * as WebBrowser from "expo-web-browser";
 import * as Linking from "expo-linking";
 import icons from "@/constants/icons";
+import RNRestart from 'react-native-restart'
 
 WebBrowser.maybeCompleteAuthSession(); // required for web only
 const redirectTo = makeRedirectUri();
@@ -61,7 +62,7 @@ const performOAuth = async () => {
   if (res.type === "success") {
     const { url } = res;
     await createSessionFromUrl(url);
-    DevSettings.reload();
+    RNRestart.restart();
     // router.push('/habits')
   }
 };
@@ -72,7 +73,7 @@ const sendMagicLink = async (data: User) => {
       email: "tester.71a220ff@hobit.app",
       password: "RhwPImiOl9AKOVq@",
     });
-    DevSettings.reload();
+    RNRestart.restart();
     return; //router.push('/habits')
   }
 
@@ -85,7 +86,7 @@ const sendMagicLink = async (data: User) => {
   });
 
   if (error) Alert.alert("Something went wrong!");
-  DevSettings.reload();
+  RNRestart.restart();
   // router.push('/habits')
   // Email sent.
 };
@@ -106,7 +107,7 @@ export default function SignInScreen() {
   const url = Linking.useURL();
   if (url) {
     createSessionFromUrl(url);
-    DevSettings.reload();
+    RNRestart.restart();
   }
 
   // const githubLogin = async () => {
