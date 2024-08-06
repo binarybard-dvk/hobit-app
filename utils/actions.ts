@@ -1,5 +1,5 @@
 import { supabase } from "./supabase";
-import { Habit } from "./types";
+import { Alert } from "react-native";
 
 interface User {
   email: string;
@@ -21,19 +21,25 @@ export async function getSessionId() {
   const {
     data: { session },
   } = await supabase.auth.getSession();
+
   return session?.user?.id;
 }
+
 export async function getHabits() {
   const user_id = await getSessionId();
-  if (!user_id) throw new Error("No user on the session in habits!");
+  if (!user_id) {
+    Alert.alert("No user on the session in habits!");
+  }
 
   const { data, error, status } = await supabase
     .from("habits")
-    .select(`id, name, frequency, description, planned_time_minutes, notify`)
+    .select(
+      `id, name, frequency, description, planned_time_minutes, notify, total_points`,
+    )
     .eq("user_id", user_id);
 
   if (error && status !== 406) {
-    throw error;
+    Alert.alert("Error fetching habits:", error.message);
   }
 
   return data;
@@ -41,7 +47,7 @@ export async function getHabits() {
 
 export async function getHabitActivity(habitId: string) {
   const user_id = await getSessionId();
-  if (!user_id) throw new Error("No user on the session in habits!");
+  if (!user_id) Alert.alert("No user on the session in habits!");
 
   const {
     data: activityData,
@@ -55,7 +61,7 @@ export async function getHabitActivity(habitId: string) {
     .limit(5);
 
   if (activityError && activityStatus !== 406) {
-    throw activityError;
+    Alert.alert("Error fetching habit activity:", activityError.message);
   }
 
   return activityData;
@@ -63,7 +69,7 @@ export async function getHabitActivity(habitId: string) {
 
 export async function getHabitActivitySummary(habitId: string) {
   const user_id = await getSessionId();
-  if (!user_id) throw new Error("No user on the session in habits!");
+  if (!user_id) Alert.alert("No user on the session in habits!");
 
   const {
     data: activityData,
@@ -71,13 +77,15 @@ export async function getHabitActivitySummary(habitId: string) {
     status: activityStatus,
   } = await supabase
     .from("habit_entries_summary")
-    .select("entry_date as date, total_time_minutes as count")
+    .select("entry_date, total_time_minutes")
     .eq("habit_id", habitId)
-    .order("entry_date", { ascending: false })
-    .limit(105);
+    .order("entry_date", { ascending: false });
 
   if (activityError && activityStatus !== 406) {
-    throw activityError;
+    Alert.alert(
+      "Error fetching habit activity summary:",
+      activityError.message,
+    );
   }
 
   return activityData?.map((d: any) => ({
@@ -119,7 +127,7 @@ export async function getProfile() {
   const {
     data: { session },
   } = await supabase.auth.getSession();
-  if (!session?.user?.id) throw new Error("No user on the session in habits!");
+  if (!session?.user?.id) Alert.alert("No user on the session in habits!");
 
   const { data, error, status } = await supabase
     .from("profiles")
@@ -127,7 +135,7 @@ export async function getProfile() {
     .eq("id", session?.user?.id)
     .single();
   if (error && status !== 406) {
-    throw error;
+    Alert.alert("Error fetching profile:", error.message);
   }
 
   return { ...data, user_id: session?.user?.id, email: session?.user?.email };
@@ -143,7 +151,7 @@ export async function updateProfile({
   avatar_url: string;
 }) {
   const user_id = await getSessionId();
-  if (!user_id) throw new Error("No user on the session!");
+  if (!user_id) Alert.alert("No user on the session!");
 
   const updates = {
     id: user_id,
@@ -156,6 +164,6 @@ export async function updateProfile({
   const { error } = await supabase.from("profiles").upsert(updates);
 
   if (error) {
-    throw error;
+    Alert.alert("Error updating profile:", error.message);
   }
 }

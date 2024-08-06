@@ -79,10 +79,10 @@ export default function ProfileScreen() {
               containerStyles={"bg-red-500 mt-5"}
               title="Sign Out"
               handlePress={async () => {
-								console.log('signing out...')
-								await supabase.auth.signOut()
-								router.push('/')
-							}}
+                console.log("signing out...");
+                await supabase.auth.signOut();
+                router.push("/");
+              }}
             />
           </View>
           {/* <Push /> */}

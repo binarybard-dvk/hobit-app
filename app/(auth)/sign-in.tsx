@@ -23,7 +23,7 @@ import * as QueryParams from "expo-auth-session/build/QueryParams";
 import * as WebBrowser from "expo-web-browser";
 import * as Linking from "expo-linking";
 import icons from "@/constants/icons";
-import RNRestart from 'react-native-restart'
+import RNRestart from "react-native-restart";
 
 WebBrowser.maybeCompleteAuthSession(); // required for web only
 const redirectTo = makeRedirectUri();
