@@ -7,6 +7,13 @@
 
 Hello people! Introducing **Hobit** — a personal habit tracker app designed to help you stay on top of your habits without cluttering your calendar. 🎯
 
+<div style="display: flex; flex-wrap: nowrap; gap: 15px; align-items: center; justify-content: space-around;">
+  <img src="https://github.com/user-attachments/assets/47ca6a7e-7998-4444-a7b2-becf8f862067" alt="Screenshot 1" width="225">
+  <img src="https://github.com/user-attachments/assets/c6f63ce7-5e0d-495e-ab6e-ff127ba9878d" alt="Screenshot 2" width="225">
+  <img src="https://github.com/user-attachments/assets/d8bb276e-772f-4648-94c0-6314926ab543" alt="Screenshot 3" width="225">
+  <img src="https://github.com/user-attachments/assets/74a7874a-1c2c-40b9-bae6-1df65e1f57ee" alt="Screenshot 4" width="225">
+</div>
+
 ## ✨ About
 
 I often forget to do things on time, and adding reminders to my calendar just made it harder to see my schedule. That's why I created **Hobit** — to help people like me remember the small habits we don't want to miss. It lets you set daily, weekly, and monthly goals, track your progress, and get timely reminders to keep you on track. 
