@@ -36,7 +36,7 @@ I often forget to do things on time, and adding reminders to my calendar just ma
 ## 📝 Feedback
 
 Any type of feedback is appreciated!  
-Please feel free to [open an issue](issues) or contact me directly.
+Please feel free to [open an issue](https://github.com/binarybard-dvk/hobit-app/issues) or contact me directly.
 
 ## 🛠️ Optimizations
 
