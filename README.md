@@ -1,5 +1,5 @@
 <div align="center">
-      <img src="https://raw.githubusercontent.com/binarybard-dvk/hobit-app/main/assets/images/adaptive-icon.png" width="100px"><br/>
+      <!--<img src="https://raw.githubusercontent.com/binarybard-dvk/hobit-app/main/assets/images/adaptive-icon.png" width="100px"><br/>-->
         <h1>Hobit App</h1>
   <p>The app to track your habits without forgetting</p>
      </div>
